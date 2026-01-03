@@ -42,11 +42,11 @@ int main()
 
 		if(aa<=0.300) sym[i] = '_';
 		else if(aa>0.300 && aa<=0.501) sym[i] = '.';
-                else if(aa>0.501 && aa<=0.750) sym[i] = 'o';
+        else if(aa>0.501 && aa<=0.750) sym[i] = 'o';
 		else if(aa>0.750) sym[i] = 'O';
 		printf("%c", sym[i]);
 		}
-	printf("\n");
+		printf("\n");
 
         for (i=0; i<len; i++)
 		{
@@ -56,51 +56,51 @@ int main()
 			first=i;
 			hphil=0;
 			}
-		if(in_seg)
+			if(in_seg)
             		{
                 	if (sym[i] == '_')
-				{
+					{
                     		hphil++;
                 	}else{
                     		hphil = 0;
-				}
+					}
 
-                if (hphil ==2 || hphil == 1 || i == len)
+            if (hphil ==2 || hphil == 1 || i == len)
                 	{
-                    	last = i - hphil;
-                    	seg_len = last - first + 1;
+                    last = i - hphil;
+                    seg_len = last - first + 1;
 
-                    	if (seg_len >= 16 && seg_len <= 30)
+                    if (seg_len >= 16 && seg_len <= 30)
                    		{
                         	count_O = 0;
-				count_o = 0;
+							count_o = 0;
 
-                        	for (h = first; h <= last; h++)
+                	for (h = first; h <= last; h++)
                         		{
                             		if (sym[h] == 'O') count_O++;
-					else if (sym[h] == 'o') count_o++;
+									else if (sym[h] == 'o') count_o++;
 
-                        		segment[h - first] = seq[h];
+                        			segment[h - first] = seq[h];
                         		}
-                                segment[seg_len] = '\0';
+                             	   	segment[seg_len] = '\0';
 
-  				perc = (count_O + count_o) * 100.0 / seg_len;
+  									perc = (count_O + count_o) * 100.0 / seg_len;
 
                        		if (perc >= 50.0 && perc < 60.0)
                         		{
-					found = 1;
-                            		printf("\nPossible Transmembrane Segment - probably aliphatic a-helix: %d - %d\n",
-                                   	first + 1, last + 1);
+								found = 1;
+                            	printf("\nPossible Transmembrane Segment - probably aliphatic a-helix: %d - %d\n",
+                            	first + 1, last + 1);
                            		printf("Sequence: %s\n", segment);
                            		printf("Percentage in Hydrophobic residues: %.2f %%\n", perc);
                         		}
                         	else if (perc >= 60.0)
                         		{
-					found = 1;
+								found = 1;
                            		printf("\nPossible Transmembrane Segment - probably a-helix or part of b-barrel: %d - %d\n",
-                                   	first + 1, last + 1);
-                            		printf("Sequence: %s\n", segment);
-                            		printf("Percentage in Hydrophobic residues: %.2f %%\n", perc);
+                                first + 1, last + 1);
+                            	printf("Sequence: %s\n", segment);
+                            	printf("Percentage in Hydrophobic residues: %.2f %%\n", perc);
 					}
 				}
                     		in_seg = 0;
@@ -111,7 +111,7 @@ int main()
 		{
 		printf("\nThis Protein probably does not contain Transmembrane Segments\n");
 		}
-	        printf("\n");
+	    printf("\n");
 	}
     	return 0;
 }
